@@ -7,7 +7,8 @@ Dockerfiles and scripts to create jitpcb image.
   - set preferences to not back up images
 - increase Docker memory resources to 6 Gb before trying to build jitpcb
 - pull down and run Docker image
-  $ docker run -t -i jitx/jitx-jitpcb /bin/bash
-
+```bash
+$ docker run -t -i jitx/jitx-jitpcb /bin/bash
+```
 The jitx/jitx-jitpcb image is private. You need to be in the jitx organization to access this image.
 
