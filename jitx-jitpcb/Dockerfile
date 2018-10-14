@@ -11,6 +11,8 @@ WORKDIR $HOME
 
 COPY --chown=jitx:jitx jitx $HOME
 
+RUN mkdir -p $HOME/bin
+
 ENV PATH="$HOME/bin:$PATH"
 
 RUN ./build-stanza.sh
