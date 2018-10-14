@@ -7,8 +7,14 @@ Dockerfiles and scripts to create JitX docker images.
   - set preferences to not back up images
 - pull down and run Docker images
   - for general tools (no jitx code)
+```bash
     $ docker run -t -i jitx/jitx-tools /bin/bash
+```
   - for tools + stanza + jitpcb code
+```bash
     $ docker run -t -i jitx/jitx-jitpcb /bin/bash
+```
 
 The jitx/jitx-jitpcb image is private. You need to be in the jitx organization to access this image.
+
+See the docker documentation on run command options to mount local file system paths in the running image.
