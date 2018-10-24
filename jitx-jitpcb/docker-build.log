@@ -1,0 +1,79 @@
+$ docker build -t jitx-jitpcb jitx-jitpcb
+Sending build context to Docker daemon  131.9MB
+Step 1/11 : FROM jitx-tools:latest
+ ---> 157d750103f0
+Step 2/11 : RUN   useradd --comment "JitX development" --no-log-init --create-home --uid 2001 --user-group jitx && echo "jitx:jitx" | chpasswd && adduser jitx sudo && echo '%sudo  ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+ ---> Using cache
+ ---> a5da3bcba282
+Step 3/11 : USER jitx
+ ---> Using cache
+ ---> b44858bc9867
+Step 4/11 : ENV HOME /home/jitx
+ ---> Using cache
+ ---> 30fa5bee368a
+Step 5/11 : WORKDIR $HOME
+ ---> Using cache
+ ---> d5f4a24003db
+Step 6/11 : COPY --chown=jitx:jitx jitx $HOME
+ ---> Using cache
+ ---> d31013b85ac5
+Step 7/11 : ENV PATH="$HOME/bin:$PATH"
+ ---> Using cache
+ ---> e9a3988ce479
+Step 8/11 : RUN ./build-stanza.sh
+ ---> Using cache
+ ---> 763771b9ffda
+Step 9/11 : RUN ./build-geode.sh
+ ---> Using cache
+ ---> 0f817e08245a
+Step 10/11 : RUN ./build-jitpcb.sh
+ ---> Running in c35c75650574
+System platform (os-x/linux): Build for cross platform? (os-x/linux/none): Jitpcb release installation folder: Building bootstrap compiler.
+System platform (os-x/linux): Build for cross platform? (os-x/linux/none): Jitpcb release installation folder: rm: cannot remove 'lstage': No such file or directory
+Compiling auxiliary files
+Compiling pkgs
+Compiling fast-pkgs
+Compiling jitpcb-debug
+Compiling jitpcb
+Compiling checker plugin
+Compiling passes plugin
+Compiling parsers plugin
+Compiling export_kicad plugin
+Compiling parts_list plugin
+Compiling place plugin
+Compiling dsn plugin
+Compiling drc plugin
+Compiling tristate plugin
+Cleanup auxiliary files
+install-dir = "/home/jitx/jitpcb/lstage"
+Removing intermediate container c35c75650574
+ ---> c9f3d3dbca56
+Step 11/11 : ENTRYPOINT []
+ ---> Running in 0a98c723cb60
+Removing intermediate container 0a98c723cb60
+ ---> 0fdd719ceec3
+Successfully built 0fdd719ceec3
+Successfully tagged jitx-jitpcb:latest
+[jrl@mpbRoad-n1 (master)~/clients/jitx/docker]
+$ docker push jitx/jitx-tools
+The push refers to repository [docker.io/jitx/jitx-tools]
+An image does not exist locally with the tag: jitx/jitx-tools
+[jrl@mpbRoad-n1 (master)~/clients/jitx/docker]
+$ docker tag jitx-jitpcb jitx/jitx-jitpcb
+[jrl@mpbRoad-n1 (master)~/clients/jitx/docker]
+$ docker push jitx/jitx-jitpcb
+The push refers to repository [docker.io/jitx/jitx-jitpcb]
+ae84649845d1: Pushed 
+04cdd94b28b3: Pushed 
+fc8b894fb859: Pushed 
+9be8ec9c18ea: Pushed 
+3fb0e25ce8d7: Pushed 
+f1cf977eb144: Mounted from jitx/jitx-tools 
+15e162d1d5aa: Mounted from jitx/jitx-tools 
+81a8569229ef: Mounted from jitx/jitx-tools 
+8d7ea83e3c62: Layer already exists 
+6a061ee02432: Layer already exists 
+f73b2816c52a: Layer already exists 
+6267b420796f: Layer already exists 
+a30b835850bf: Layer already exists 
+latest: digest: sha256:7ad90c06fb0fd2026141b87a3f1db4eaf164eb89e6ede235b98cbdac8df3fb5a size: 3045
