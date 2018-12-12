@@ -13,9 +13,11 @@ COPY --chown=jitx:jitx jitx $HOME
 
 RUN mkdir -p $HOME/bin
 
-ENV PATH="$HOME/bin:$PATH"
+ENV PATH="$HOME/bin:$HOME/electra7:$PATH"
 
 RUN ./build-stanza.sh
+
+COPY dotstanzalstage $HOME/.stanza
 
 RUN ./build-geode.sh
 
