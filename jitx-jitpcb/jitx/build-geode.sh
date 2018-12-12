@@ -2,9 +2,10 @@
 BINDIR=$HOME/bin
 INSTALLROOT=$HOME
 
+which python
+python -V
+git clone https://github.com/mathandy/svgpathtools.git
+(cd svgpathtools && sudo python setup.py install)
 cd $HOME/jitpcb/geode
-mkdir build
-cd build
-cmake ../
-make
-sudo make install
+./metaBuild.sh release
+(cd build; sudo make install)
